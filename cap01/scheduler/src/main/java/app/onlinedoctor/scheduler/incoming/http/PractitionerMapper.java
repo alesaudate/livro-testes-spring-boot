@@ -9,7 +9,10 @@ public class PractitionerMapper {
 
 
     public PractitionerDTO mapToPractitionerDTO(Practitioner practitioner) {
-        return null;
+        return PractitionerDTO.builder()
+                .id(practitioner.getId())
+                .name(practitioner.getName())
+                .build();
     }
 
 }

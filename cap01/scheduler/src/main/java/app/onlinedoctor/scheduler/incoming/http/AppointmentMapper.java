@@ -4,7 +4,6 @@ import app.onlinedoctor.scheduler.domain.appointments.Appointment;
 import app.onlinedoctor.scheduler.domain.appointments.CreateAppointmentRequest;
 import app.onlinedoctor.scheduler.incoming.http.dto.AppointmentDTO;
 import app.onlinedoctor.scheduler.incoming.http.dto.CreateAppointmentRequestDTO;
-import app.onlinedoctor.scheduler.incoming.http.dto.CreateAppointmentResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
