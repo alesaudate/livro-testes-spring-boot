@@ -1,9 +1,8 @@
-package app.onlinedoctor.scheduler.outgoing.http;
+package app.onlinedoctor.scheduler.outgoing.http.patients;
 
 import app.onlinedoctor.scheduler.exceptions.ProxyRequestFailureException;
 import app.onlinedoctor.scheduler.exceptions.PatientNotFoundException;
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;

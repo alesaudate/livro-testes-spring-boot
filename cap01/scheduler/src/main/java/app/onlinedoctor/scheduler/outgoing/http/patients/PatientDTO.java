@@ -1,4 +1,4 @@
-package app.onlinedoctor.scheduler.outgoing.http;
+package app.onlinedoctor.scheduler.outgoing.http.patients;
 
 import lombok.Data;
 

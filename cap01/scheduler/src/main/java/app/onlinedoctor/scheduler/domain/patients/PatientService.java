@@ -2,8 +2,8 @@ package app.onlinedoctor.scheduler.domain.patients;
 
 import app.onlinedoctor.scheduler.exceptions.PatientNotFoundException;
 import app.onlinedoctor.scheduler.outgoing.database.PatientRepository;
-import app.onlinedoctor.scheduler.outgoing.http.PatientAPIClient;
-import app.onlinedoctor.scheduler.outgoing.http.PatientDTO;
+import app.onlinedoctor.scheduler.outgoing.http.patients.PatientAPIClient;
+import app.onlinedoctor.scheduler.outgoing.http.patients.PatientDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +21,7 @@ public class PatientService {
 
     public Patient findPatientById(UUID patientId) {
         var patient = patientRepository.findById(patientId).map(patientMapper::mapToDomain);
-        return patient.or(() -> Optional.of(loadPatientFromAPI(patientId)))
-                .orElseThrow(() -> new PatientNotFoundException(patientId));
+        return patient.orElseGet(() -> loadPatientFromAPI(patientId));
     }
 
     public void savePatient(Patient patient) {

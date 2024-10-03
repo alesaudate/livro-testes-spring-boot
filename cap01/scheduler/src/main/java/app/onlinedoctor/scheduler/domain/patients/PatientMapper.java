@@ -1,7 +1,7 @@
 package app.onlinedoctor.scheduler.domain.patients;
 
 import app.onlinedoctor.scheduler.outgoing.database.PatientEntity;
-import app.onlinedoctor.scheduler.outgoing.http.PatientDTO;
+import app.onlinedoctor.scheduler.outgoing.http.patients.PatientDTO;
 import org.springframework.stereotype.Component;
 
 @Component("domainPatientMapper")
