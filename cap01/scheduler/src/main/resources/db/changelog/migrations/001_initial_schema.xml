@@ -1,0 +1,54 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="001_create_table_patients" author="asaudate">
+        <createTable tableName="patients">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="patients_id_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="001_create_table_practitioners" author="asaudate">
+        <createTable tableName="practitioners">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="practitioners_id_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="001_create_table_appointments" author="asaudate">
+        <createTable tableName="appointments">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="appointments_id_pk"/>
+            </column>
+            <column name="start_time" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_id" type="uuid">
+                <constraints referencedTableName="patients"
+                             referencedColumnNames="id"
+                             foreignKeyName="appointment_patient_id_fk"/>
+            </column>
+            <column name="practitioner_id" type="uuid">
+                <constraints referencedTableName="practitioners"
+                             referencedColumnNames="id"
+                             foreignKeyName="appointment_practitioner_id_fk"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
