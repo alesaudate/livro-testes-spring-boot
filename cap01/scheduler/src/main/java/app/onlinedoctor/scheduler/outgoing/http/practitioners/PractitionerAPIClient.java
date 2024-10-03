@@ -7,11 +7,13 @@ import app.onlinedoctor.scheduler.outgoing.http.patients.PatientDTO;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
 
+@Component
 public class PractitionerAPIClient {
 
     @Value("${application.outgoing.practitioner-service.host}")

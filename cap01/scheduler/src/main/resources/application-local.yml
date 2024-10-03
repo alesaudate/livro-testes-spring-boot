@@ -11,3 +11,5 @@ application:
   outgoing:
     patient-service:
       host: "http://localhost:8081"
+    practitioner-service:
+      host: "http://localhost:8081"
