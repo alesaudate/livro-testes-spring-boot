@@ -14,26 +14,34 @@ public class AppointmentsMapper {
     private final PatientMapper patientMapper;
     private final PractitionerMapper practitionerMapper;
 
-    public AppointmentEntity mapToDatabaseEntity(CreateAppointmentRequest createAppointmentRequest) {
+    public AppointmentEntity mapToDatabase(
+          CreateAppointmentRequest createAppointmentRequest) {
+
+        var patient = createAppointmentRequest.getPatient();
+        var practitioner = createAppointmentRequest.getPractitioner();
+
         return AppointmentEntity.builder()
                 .duration(createAppointmentRequest.getDuration())
                 .startTime(createAppointmentRequest.getStartTime())
-                .patient(createAppointmentRequest.getPatient().toEntity())
-                .practitioner(practitionerMapper.mapToEntity(createAppointmentRequest.getPractitioner()))
+                .patient(patientMapper.mapToDatabase(patient))
+                .practitioner(practitionerMapper.mapToDatabase(practitioner))
                 .build();
     }
 
 
     public Appointment mapToDomain(AppointmentEntity appointmentEntity) {
+        var patient = appointmentEntity.getPatient();
+        var practitioner = appointmentEntity.getPractitioner();
+
         return Appointment.builder()
                 .duration(appointmentEntity.getDuration())
-                .patient(patientMapper.mapToDomain(appointmentEntity.getPatient()))
+                .patient(patientMapper.mapToDomain(patient))
                 .startTime(appointmentEntity.getStartTime())
-                .practitioner(practitionerMapper.mapToDomain(appointmentEntity.getPractitioner()))
+                .practitioner(practitionerMapper.mapToDomain(practitioner))
                 .build();
     }
 
-    public AppointmentDTO mapToOutgoingAppointmentDTO(AppointmentEntity appointmentEntity) {
+    public AppointmentDTO mapToOutgoing(AppointmentEntity appointmentEntity) {
         return AppointmentDTO.builder()
                 .appointmentId(appointmentEntity.getId())
                 .duration(appointmentEntity.getDuration())

@@ -14,13 +14,4 @@ public class Patient {
     private UUID id;
     private String name;
     private LocalDate dateOfBirth;
-
-
-    public PatientEntity toEntity() {
-        return PatientEntity.builder()
-                .id(id)
-                .dateOfBirth(dateOfBirth)
-                .name(name)
-                .build();
-    }
 }

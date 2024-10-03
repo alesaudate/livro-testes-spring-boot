@@ -7,12 +7,10 @@ import org.springframework.stereotype.Component;
 @Component("incomingHttpPractitionerMapper")
 public class PractitionerMapper {
 
-
-    public PractitionerDTO mapToPractitionerDTO(Practitioner practitioner) {
-        return PractitionerDTO.builder()
-                .id(practitioner.getId())
-                .name(practitioner.getName())
-                .build();
-    }
-
+   public PractitionerDTO mapToIncoming(Practitioner practitioner) {
+      return PractitionerDTO.builder()
+         .id(practitioner.getId())
+         .name(practitioner.getName())
+         .build();
+   }
 }

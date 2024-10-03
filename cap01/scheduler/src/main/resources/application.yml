@@ -5,6 +5,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
   kafka:
     consumer:

@@ -11,25 +11,30 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AppointmentMapper {
 
-    private final PatientMapper patientMapper;
-    private final PractitionerMapper practitionerMapper;
+   private final PatientMapper patientMapper;
+   private final PractitionerMapper practitionerMapper;
 
 
-    public CreateAppointmentRequest mapToCreateAppointmentRequestFromDTO(CreateAppointmentRequestDTO createAppointmentRequestDTO) {
-        return CreateAppointmentRequest.builder()
-                .startTime(createAppointmentRequestDTO.getStartTime())
-                .patientID(createAppointmentRequestDTO.getPatientID())
-                .duration(createAppointmentRequestDTO.getDuration())
-                .practitionerID(createAppointmentRequestDTO.getPractitionerID())
-                .build();
-    }
+   public CreateAppointmentRequest mapToDomain(
+      CreateAppointmentRequestDTO createAppointmentRequestDTO) {
 
-    public AppointmentDTO mapToAppointmentDTO(Appointment appointment) {
-        return AppointmentDTO.builder()
-                .duration(appointment.getDuration())
-                .startTime(appointment.getStartTime())
-                .patientDTO(patientMapper.mapToPatientDTO(appointment.getPatient()))
-                .practitionerDTO(practitionerMapper.mapToPractitionerDTO(appointment.getPractitioner()))
-                .build();
-    }
+      return CreateAppointmentRequest.builder()
+         .startTime(createAppointmentRequestDTO.getStartTime())
+         .patientID(createAppointmentRequestDTO.getPatientID())
+         .duration(createAppointmentRequestDTO.getDuration())
+         .practitionerID(createAppointmentRequestDTO.getPractitionerID())
+         .build();
+   }
+
+   public AppointmentDTO mapToIncoming(Appointment appointment) {
+      var practitioner = appointment.getPractitioner();
+      var patient = appointment.getPatient();
+
+      return AppointmentDTO.builder()
+         .duration(appointment.getDuration())
+         .startTime(appointment.getStartTime())
+         .patientDTO(patientMapper.mapToIncoming(patient))
+         .practitionerDTO(practitionerMapper.mapToIncoming(practitioner))
+         .build();
+   }
 }

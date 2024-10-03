@@ -33,10 +33,10 @@ public class AppointmentService {
 
         verifyThatAppointmentTimeIsAvailableForPractitioner(createAppointmentRequest);
 
-        var appointment = appointmentsMapper.mapToDatabaseEntity(createAppointmentRequest);
+        var appointment = appointmentsMapper.mapToDatabase(createAppointmentRequest);
         appointment = appointmentsRepository.save(appointment);
 
-        var outgoingAppointment = appointmentsMapper.mapToOutgoingAppointmentDTO(appointment);
+        var outgoingAppointment = appointmentsMapper.mapToOutgoing(appointment);
         appointmentMessagePublisher.broadcastAppointmentCreated(outgoingAppointment);
 
         return appointmentsMapper.mapToDomain(appointment);

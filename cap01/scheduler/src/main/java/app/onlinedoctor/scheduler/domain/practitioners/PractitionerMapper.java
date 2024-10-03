@@ -14,7 +14,7 @@ public class PractitionerMapper {
                 .build();
     }
 
-    public PractitionerEntity mapToEntity(Practitioner practitioner){
+    public PractitionerEntity mapToDatabase(Practitioner practitioner){
         return PractitionerEntity.builder()
                 .id(practitioner.getId())
                 .name(practitioner.getName())
@@ -28,7 +28,7 @@ public class PractitionerMapper {
                 .build();
     }
 
-    public PractitionerEntity mapToDatabaseEntity(PractitionerDTO practitionerDTO) {
+    public PractitionerEntity mapToDatabase(PractitionerDTO practitionerDTO) {
         return PractitionerEntity.builder()
                 .id(practitionerDTO.getId())
                 .name(practitionerDTO.getName())

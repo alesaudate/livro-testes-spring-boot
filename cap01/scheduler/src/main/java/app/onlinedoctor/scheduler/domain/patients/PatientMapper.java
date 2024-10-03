@@ -23,7 +23,7 @@ public class PatientMapper {
                 .build();
     }
 
-    public PatientEntity mapToDatabaseEntity(PatientDTO patientDTO) {
+    public PatientEntity mapToDatabase(PatientDTO patientDTO) {
         return PatientEntity.builder()
                 .name(patientDTO.getName())
                 .dateOfBirth(patientDTO.getDateOfBirth())
@@ -31,7 +31,7 @@ public class PatientMapper {
                 .build();
     }
 
-    public PatientEntity mapToDatabaseEntity(Patient patient) {
+    public PatientEntity mapToDatabase(Patient patient) {
         return PatientEntity.builder()
                 .id(patient.getId())
                 .name(patient.getName())

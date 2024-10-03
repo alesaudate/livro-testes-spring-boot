@@ -1,13 +1,11 @@
 package app.onlinedoctor.scheduler.domain.practitioners;
 
-import app.onlinedoctor.scheduler.exceptions.PractitionerNotFoundException;
 import app.onlinedoctor.scheduler.outgoing.database.PractitionerRepository;
 import app.onlinedoctor.scheduler.outgoing.http.practitioners.PractitionerAPIClient;
 import app.onlinedoctor.scheduler.outgoing.http.practitioners.PractitionerDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,7 +23,7 @@ public class PractitionerService {
     }
 
     public void savePractitioner(Practitioner practitioner) {
-        var practitionerEntity = practitionerMapper.mapToEntity(practitioner);
+        var practitionerEntity = practitionerMapper.mapToDatabase(practitioner);
         practitionerRepository.save(practitionerEntity);
     }
 
@@ -36,7 +34,7 @@ public class PractitionerService {
     }
 
     private void savePractitioner(PractitionerDTO practitionerDTO) {
-        var practitionerEntity = practitionerMapper.mapToDatabaseEntity(practitionerDTO);
+        var practitionerEntity = practitionerMapper.mapToDatabase(practitionerDTO);
         practitionerRepository.save(practitionerEntity);
     }
 

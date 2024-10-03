@@ -1,13 +1,11 @@
 package app.onlinedoctor.scheduler.domain.patients;
 
-import app.onlinedoctor.scheduler.exceptions.PatientNotFoundException;
 import app.onlinedoctor.scheduler.outgoing.database.PatientRepository;
 import app.onlinedoctor.scheduler.outgoing.http.patients.PatientAPIClient;
 import app.onlinedoctor.scheduler.outgoing.http.patients.PatientDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,7 +23,7 @@ public class PatientService {
     }
 
     public void savePatient(Patient patient) {
-        var patientEntity = patientMapper.mapToDatabaseEntity(patient);
+        var patientEntity = patientMapper.mapToDatabase(patient);
         patientRepository.save(patientEntity);
     }
 
@@ -36,7 +34,7 @@ public class PatientService {
     }
 
     private void savePatient(PatientDTO patientDTO) {
-        var patientEntity = patientMapper.mapToDatabaseEntity(patientDTO);
+        var patientEntity = patientMapper.mapToDatabase(patientDTO);
         patientRepository.save(patientEntity);
     }
 }
