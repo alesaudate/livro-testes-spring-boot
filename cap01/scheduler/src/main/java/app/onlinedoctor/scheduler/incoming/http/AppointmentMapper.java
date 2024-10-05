@@ -14,9 +14,9 @@ public class AppointmentMapper {
    private final PatientMapper patientMapper;
    private final PractitionerMapper practitionerMapper;
 
-
    public CreateAppointmentRequest mapToDomain(
-      CreateAppointmentRequestDTO createAppointmentRequestDTO) {
+      CreateAppointmentRequestDTO createAppointmentRequestDTO
+   ) {
 
       return CreateAppointmentRequest.builder()
          .startTime(createAppointmentRequestDTO.getStartTime())

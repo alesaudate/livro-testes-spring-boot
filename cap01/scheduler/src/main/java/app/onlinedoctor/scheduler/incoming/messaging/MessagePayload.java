@@ -9,8 +9,8 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION;
 
 @JsonTypeInfo(use = DEDUCTION)
 @JsonSubTypes({
-        @JsonSubTypes.Type(PatientDTO.class),
-        @JsonSubTypes.Type(PractitionerDTO.class),
+   @JsonSubTypes.Type(PatientDTO.class),
+   @JsonSubTypes.Type(PractitionerDTO.class),
 })
 public abstract class MessagePayload {
 }

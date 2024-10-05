@@ -8,8 +8,8 @@ import java.util.UUID;
 @Data
 public class PatientDTO {
 
-    private UUID patientID;
-    private String name;
-    private LocalDate dateOfBirth;
+   private UUID patientID;
+   private String name;
+   private LocalDate dateOfBirth;
 
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
@@ -19,22 +20,23 @@ import java.util.UUID;
 @Table(name = "appointments")
 @Data
 @Builder
+@EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppointmentEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.UUID)
+   private UUID id;
 
-    private OffsetDateTime startTime;
+   private OffsetDateTime startTime;
 
-    private Duration duration;
+   private Duration duration;
 
-    @ManyToOne
-    private PatientEntity patient;
+   @ManyToOne
+   private PatientEntity patient;
 
-    @ManyToOne
-    private PractitionerEntity practitioner;
+   @ManyToOne
+   private PractitionerEntity practitioner;
 
 }

@@ -9,11 +9,10 @@ import java.util.UUID;
 @Getter
 public class PractitionerNotFoundException extends RuntimeException {
 
-    private final UUID practitionerID;
+   private final UUID practitionerID;
 
-    public PractitionerNotFoundException(UUID practitionerID, Throwable cause) {
-        super(cause);
-        this.practitionerID = practitionerID;
-    }
-
+   public PractitionerNotFoundException(UUID practitionerID, Throwable cause) {
+      super(cause);
+      this.practitionerID = practitionerID;
+   }
 }

@@ -8,10 +8,9 @@ import java.util.UUID;
 
 public interface AppointmentsRepository extends JpaRepository<AppointmentEntity, UUID> {
 
-    List<AppointmentEntity> findByPractitionerIdAndStartTimeBetween(
-            UUID practitionerId,
-            OffsetDateTime initialTime,
-            OffsetDateTime endTime);
-
-
+   List<AppointmentEntity> findByPractitionerIdAndStartTimeBetween(
+      UUID practitionerId,
+      OffsetDateTime initialTime,
+      OffsetDateTime endTime
+   );
 }

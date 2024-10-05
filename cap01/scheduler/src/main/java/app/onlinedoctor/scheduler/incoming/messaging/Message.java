@@ -1,17 +1,25 @@
 package app.onlinedoctor.scheduler.incoming.messaging;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
+
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Jacksonized
 public class Message<T extends MessagePayload> {
 
-    private MessageMetadata metadata;
-    private T payload;
+   private Metadata metadata;
+   private T payload;
 
+   @Data
+   @Builder
+   @Jacksonized
+   public static class Metadata {
+
+      private String origin;
+      private OffsetDateTime timestamp;
+   }
 }

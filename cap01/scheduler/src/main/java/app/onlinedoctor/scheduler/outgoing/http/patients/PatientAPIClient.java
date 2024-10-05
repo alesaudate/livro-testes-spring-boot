@@ -1,7 +1,7 @@
 package app.onlinedoctor.scheduler.outgoing.http.patients;
 
-import app.onlinedoctor.scheduler.exceptions.ProxyRequestFailureException;
 import app.onlinedoctor.scheduler.exceptions.PatientNotFoundException;
+import app.onlinedoctor.scheduler.exceptions.ProxyRequestFailureException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -14,26 +14,27 @@ import java.util.UUID;
 @Component
 public class PatientAPIClient {
 
-    @Value("${application.outgoing.patient-service.host}")
-    private String patientServiceHost;
-    private RestTemplate patientAPITemplate;
+   @Value("${application.outgoing.patient-service.host}")
+   private String patientServiceHost;
+   private RestTemplate patientAPI;
 
-    @PostConstruct
-    public void setup() {
-        patientAPITemplate = new RestTemplateBuilder()
-                .rootUri(patientServiceHost)
-                .build();
-    }
+   @PostConstruct
+   public void setup() {
+      patientAPI = new RestTemplateBuilder()
+         .rootUri(patientServiceHost)
+         .build();
+   }
 
-    public PatientDTO loadPatient(UUID patientId) {
-        try {
-            var response = patientAPITemplate.getForEntity("/api/v1/patients/{}", PatientDTO.class, patientId);
-            return response.getBody();
-        } catch (HttpClientErrorException.NotFound e) {
-            throw new PatientNotFoundException(patientId, e);
-        }
-        catch (Exception e) {
-            throw new ProxyRequestFailureException(e, "patient service");
-        }
-    }
+   public PatientDTO loadPatient(UUID patientId) {
+      try {
+         return patientAPI.getForObject(
+            "/api/v1/patients/{}",
+            PatientDTO.class,
+            patientId);
+      } catch (HttpClientErrorException.NotFound e) {
+         throw new PatientNotFoundException(patientId, e);
+      } catch (Exception e) {
+         throw new ProxyRequestFailureException(e, "patient service");
+      }
+   }
 }
