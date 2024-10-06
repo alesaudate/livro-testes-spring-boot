@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scheduler
+    username: scheduler_user
+    password: scheduler
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+application:
+  outgoing:
+    patient-service:
+      host: "http://localhost:8081"
+    practitioner-service:
+      host: "http://localhost:8081"
