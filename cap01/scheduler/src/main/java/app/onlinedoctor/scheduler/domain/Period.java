@@ -16,22 +16,20 @@ public class Period {
    public boolean overlaps(Period period) {
       var thisStart = start;
       var thisEnd = start.plus(duration);
-      return isDateTimeEnclosedInPeriod(thisStart, period)
-         || isDateTimeEnclosedInPeriod(thisEnd, period);
+
+      var otherStart = period.start;
+      var otherEnd = period.start.plus(period.duration);
+
+      return
+         thisStart.isEqual(otherStart) ||
+            contains(otherStart, thisStart, thisEnd) ||
+            contains(otherEnd, thisStart, thisEnd);
    }
 
-   private boolean isDateTimeEnclosedInPeriod(
-      OffsetDateTime dateTime, Period period
-   ) {
-      var startOtherPeriod = period.start;
-      var endOtherPeriod = period.start.plus(period.duration);
-
-      var isAfterStart = dateTime.isAfter(startOtherPeriod)
-         || dateTime.isEqual(startOtherPeriod);
-
-      var isBeforeEnd = dateTime.isBefore(endOtherPeriod)
-         || dateTime.isEqual(endOtherPeriod);
-
-      return (isAfterStart) && (isBeforeEnd);
+   private boolean contains(OffsetDateTime dateTime, OffsetDateTime start,
+                            OffsetDateTime end) {
+      var isAfterStart = dateTime.isAfter(start);
+      var isBeforeEnd = dateTime.isBefore(end);
+      return isAfterStart && isBeforeEnd;
    }
 }
